@@ -35,6 +35,7 @@ export default function TodoPage() {
 
   return (
     <div className="container min-h-screen pt-8">
+      <h1 className="text-2xl font-bold mb-4">Todo List</h1>
       <div className="flex space-x-3">
         <input
           className="p-4 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
