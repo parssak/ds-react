@@ -125,12 +125,14 @@ const Diagram = ({ items }: { items: Item[] }) => {
         {layoutNodes.map((node) => (
           <div
             key={node.id}
-            className="p-3 bg-blue-400 rounded-xl relative whitespace-nowrap"
+            className="p-3 h-6 bg-blue-400 hover:bg-blue-500 transition rounded-xl relative whitespace-nowrap"
             style={{
               left: `${node.x * scale}%`,
               width: `${node.width * scale}%`,
             }}
-          />
+          >
+            <span className="absolute top-0 bottom-0 grid place-items-center left-full text-left pl-2 text-sm">{node.name}</span>
+          </div>
         ))}
       </div>
     </div>
