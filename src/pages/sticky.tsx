@@ -63,7 +63,6 @@ export default function StickyPage() {
     setNotes((prev) =>
       prev.map((note) => {
         if (note.id === id) {
-          console.debug("editNote", note, attribute, value);
           return { ...note, [attribute]: value };
         }
         return note;
