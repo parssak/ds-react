@@ -121,7 +121,7 @@ const Diagram = ({ items }: { items: Item[] }) => {
         value={scale}
         onChange={(e) => setScale(parseInt(e.target.value))}
       />
-      <div className="relative space-y-2">
+      <div className="relative space-y-2 overflow-auto">
         {layoutNodes.map((node) => (
           <div
             key={node.id}
@@ -131,7 +131,9 @@ const Diagram = ({ items }: { items: Item[] }) => {
               width: `${node.width * scale}%`,
             }}
           >
-            <span className="absolute top-0 bottom-0 grid place-items-center left-full text-left pl-2 text-sm">{node.name}</span>
+            <span className="absolute top-0 bottom-0 grid place-items-center left-full text-left pl-2 text-sm">
+              {node.name}
+            </span>
           </div>
         ))}
       </div>
