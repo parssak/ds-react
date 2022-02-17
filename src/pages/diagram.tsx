@@ -149,9 +149,10 @@ export default function DiagramPage() {
       <div className="question my-12">
         Given an input array of <code>items</code>, display a Gantt Diagram that is:
         <ul className="list-inside list-disc mt-1 space-y-1">
-          <li>Responsive to the container</li>
+          <li>Responsive to it's container</li>
           <li>Displays labels to the right of each bar</li>
           <li>Able to resize with a scale slider input</li>
+          <li>Must be able to display single-day events</li>
         </ul>
         <details className="mt-1">
           <summary>Example input:</summary>
