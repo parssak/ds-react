@@ -46,7 +46,7 @@ const TodoList = ({
     <>
       <div className="flex space-x-3">
         <input
-          className="p-4 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
+          className="input-text"
           type="text"
           placeholder="Add a todo"
           value={input}
