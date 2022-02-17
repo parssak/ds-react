@@ -53,10 +53,7 @@ const TodoList = ({
           onChange={handleChange}
           onKeyDown={(e) => e.key === "Enter" && addTodo()}
         />
-        <button
-          className="btn"
-          onClick={addTodo}
-        >
+        <button className="btn" onClick={addTodo}>
           Add Task
         </button>
       </div>
