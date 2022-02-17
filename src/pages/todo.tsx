@@ -7,7 +7,7 @@ interface ITodo {
 }
 
 export default function TodoPage() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<ITodo[]>([]);
   const [input, setInput] = useState("");
 
   const handleChange = (e) => {

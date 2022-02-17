@@ -10,6 +10,10 @@ export default function Home() {
       title: "Sticky Example",
       path: "/sticky",
     },
+    {
+      title: "Diagram Example",
+      path: "/diagram",
+    }
   ];
 
   return (
