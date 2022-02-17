@@ -1,4 +1,15 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
+h1 {
+  @apply text-2xl font-bold mb-4;
+}
+
+.page {
+  @apply container min-h-screen pt-8;
+}
+
+.question {
+  @apply bg-blue-50 rounded-md p-2;
+}

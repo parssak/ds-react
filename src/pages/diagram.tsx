@@ -121,17 +121,17 @@ const Diagram = ({ items }: { items: Item[] }) => {
         value={scale}
         onChange={(e) => setScale(parseInt(e.target.value))}
       />
-      <div className="relative space-y-2 overflow-auto">
+      <div className="space-y-2 overflow-auto">
         {layoutNodes.map((node) => (
           <div
             key={node.id}
-            className="p-3 h-6 bg-blue-400 hover:bg-blue-500 transition rounded-xl relative whitespace-nowrap"
+            className="p-3 h-6 bg-blue-400 group hover:bg-blue-500 transition rounded-xl relative whitespace-nowrap cursor-pointer"
             style={{
               left: `${node.x * scale}%`,
               width: `${node.width * scale}%`,
             }}
           >
-            <span className="absolute top-0 bottom-0 grid place-items-center left-full text-left pl-2 text-sm">
+            <span className="absolute top-0 bottom-0 grid place-items-center left-full text-left pl-2 text-sm text-gray-500 group-hover:text-black">
               {node.name}
             </span>
           </div>
@@ -143,9 +143,23 @@ const Diagram = ({ items }: { items: Item[] }) => {
 
 export default function DiagramPage() {
   return (
-    <div className="container min-h-screen pt-8">
-      <h1 className="text-2xl font-bold mb-4">Gantt Diagram</h1>
+    <div className="page">
+      <h1>Gantt Diagram</h1>
       <Diagram items={items} />
+      <div className="question my-12">
+        Given an input array of <code>items</code>, display a Gantt Diagram that is:
+        <ul className="list-inside list-disc mt-1 space-y-1">
+          <li>Responsive to the container</li>
+          <li>Displays labels to the right of each bar</li>
+          <li>Able to resize with a scale slider input</li>
+        </ul>
+        <details className="mt-1">
+          <summary>Example input:</summary>
+          <pre className="mt-2 bg-white text-green-600 p-1 rounded-md">
+            <code>{JSON.stringify(items, null, 2)}</code>
+          </pre>
+        </details>
+      </div>
     </div>
   );
 }
