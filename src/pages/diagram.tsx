@@ -1,6 +1,19 @@
 import React, { useMemo, useState } from "react";
 
-const items = [
+interface Item {
+  start: string;
+  end: string;
+  name: string;
+}
+
+interface ILayoutNode {
+  id: string;
+  x: number;
+  width: number;
+  name: string;
+}
+
+const items: Item[] = [
   {
     start: "2018-01-01",
     end: "2018-01-05",
@@ -59,6 +72,7 @@ const items = [
   {
     start: "2018-02-01",
     end: "2018-02-15",
+
     name: "Third item",
   },
   {
@@ -68,22 +82,9 @@ const items = [
   },
 ];
 
-interface Item {
-  start: string;
-  end: string;
-  name: string;
-}
-
-interface ILayoutNode {
-  id: string;
-  x: number;
-  width: number;
-  name: string;
-}
-
 const Diagram = ({ items }: { items: Item[] }) => {
-  // range input for scale
   const [scale, setScale] = useState(40);
+
   const computeLayoutNodes = (items: Item[]): ILayoutNode[] => {
     const sortedItems = items.sort(
       (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
@@ -91,6 +92,7 @@ const Diagram = ({ items }: { items: Item[] }) => {
 
     const start = new Date(sortedItems[0].start);
     const end = new Date(sortedItems[sortedItems.length - 1].end);
+
     // at least 1 week long
     const layoutRangeMs = Math.max(end.getTime() - start.getTime(), 604800000);
 
@@ -112,7 +114,6 @@ const Diagram = ({ items }: { items: Item[] }) => {
 
   return (
     <div>
-      {/* range input for scale */}
       <input
         type="range"
         min="25"
@@ -128,11 +129,8 @@ const Diagram = ({ items }: { items: Item[] }) => {
             style={{
               left: `${node.x * scale}%`,
               width: `${node.width * scale}%`,
-              
             }}
-          >
-            {/* {node.name} */}
-          </div>
+          />
         ))}
       </div>
     </div>
