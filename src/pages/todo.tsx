@@ -1,3 +1,4 @@
+import useStateWithHistory from "hooks/useStateWithHistory";
 import React, { useState } from "react";
 
 interface ITodo {
@@ -6,13 +7,8 @@ interface ITodo {
   completed: boolean;
 }
 
-const TodoList = ({
-  todos,
-  setTodos,
-}: {
-  todos: ITodo[];
-  setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
-}) => {
+const TodoList = () => {
+  const [todos, setTodos, undo, redo, todoHistory] = useStateWithHistory<ITodo[]>([]);
   const [input, setInput] = useState("");
 
   const handleChange = (e) => {
@@ -21,8 +17,8 @@ const TodoList = ({
 
   const addTodo = () => {
     if (input.trim().length === 0) return;
-    setTodos((prev) => [
-      ...prev,
+    setTodos([
+      ...todos,
       {
         id: Date.now(),
         text: input,
@@ -56,6 +52,20 @@ const TodoList = ({
         <button className="btn" onClick={addTodo}>
           Add Task
         </button>
+        <button
+          className={`${todoHistory.prev.length === 0 && "cursor-not-allowed !bg-purple-400"} btn`}
+          onClick={undo}
+        >
+          Undo
+        </button>
+        <button
+          className={`${
+            todoHistory.future.length === 0 && "cursor-not-allowed !bg-purple-400"
+          } btn`}
+          onClick={redo}
+        >
+          Redo
+        </button>
       </div>
       <ul className="w-full mt-4 space-y-2">
         {todos.map((todo) => (
@@ -83,11 +93,10 @@ const TodoList = ({
 };
 
 export default function TodoPage() {
-  const [todos, setTodos] = useState<ITodo[]>([]);
   return (
     <div className="container min-h-screen pt-8">
       <h1 className="text-2xl font-bold mb-4">Todo List</h1>
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoList />
       <div className="question my-12">
         Implement a todo list that:
         <ul className="list-inside list-disc mt-1 space-y-1">
@@ -98,6 +107,7 @@ export default function TodoPage() {
           </li>
           <li>Able to toggle a task by clicking on it</li>
           <li>Able to remove a task by clicking on the remove button</li>
+          <li className="font-semibold">Able to undo and redo actions</li>
         </ul>
       </div>
     </div>
